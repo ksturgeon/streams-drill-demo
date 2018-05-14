@@ -8,6 +8,8 @@ Or - run the included 'install_kafka_client.sh'
   
 bash install_kafka_client.sh
 
+1a.  May also need Python requests library - sudo pip install requests
+
 2.  You still need to edit .bashrc to set LD_LIBRARY_PATH.  Add the following to the end of .bashrc:
   
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/mapr/lib
