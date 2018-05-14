@@ -18,7 +18,7 @@ while ok:
 
     response.encoding = 'json'
     #print(response.text)
-    ok = response.status_code == response.codes.ok
+    ok = response.status_code == requests.codes.ok
 
     p = Producer({'streams.producer.default.stream': '/demo-stream'})
     p.produce('topic1', response.text)
