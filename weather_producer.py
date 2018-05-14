@@ -13,7 +13,7 @@ headers = {
 
 ok = True
 
-while ok
+while ok:
     response = requests.request('GET', url, headers=headers)
 
     response.encoding = 'json'
