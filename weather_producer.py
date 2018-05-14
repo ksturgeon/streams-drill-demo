@@ -1,6 +1,22 @@
 from confluent_kafka import Producer
+import json
+import requests
+
+#make a request to the weather dot gov api for Waxhaw, NC weather station
+url = 'https://api.weather.gov/stations/KEQY/observations/current'
+
+headers = {
+        #just need any user-agent string
+    'User-Agent': 'demo-application',
+    'Cache-Control': 'no-cache'
+    }
+
+response = requests.request('GET', url, headers=headers)
+
+response.encoding = 'json'
+#print(response.text)
+
+
 p = Producer({'streams.producer.default.stream': '/demo-stream'})
-some_data_source=["msg1","msg2","msg3"]
-for data in some_data_source:
-  p.produce('topic1', data.encode('utf-8'))
-  p.flush()
+p.produce('topic1', response)
+p.flush()
