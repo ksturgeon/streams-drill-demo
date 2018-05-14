@@ -18,5 +18,5 @@ response.encoding = 'json'
 
 
 p = Producer({'streams.producer.default.stream': '/demo-stream'})
-p.produce('topic1', response)
+p.produce('topic1', response.text)
 p.flush()
