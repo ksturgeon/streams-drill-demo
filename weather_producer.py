@@ -11,12 +11,17 @@ headers = {
     'Cache-Control': 'no-cache'
     }
 
-response = requests.request('GET', url, headers=headers)
+ok = True
 
-response.encoding = 'json'
-#print(response.text)
+while ok
+    response = requests.request('GET', url, headers=headers)
 
+    response.encoding = 'json'
+    #print(response.text)
+    ok = response.status_code == response.codes.ok
 
-p = Producer({'streams.producer.default.stream': '/demo-stream'})
-p.produce('topic1', response.text)
-p.flush()
+    p = Producer({'streams.producer.default.stream': '/demo-stream'})
+    p.produce('topic1', response.text)
+    p.flush()
+
+    time.sleep(10)
