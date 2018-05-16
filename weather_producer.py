@@ -20,9 +20,13 @@ while ok:
     response.encoding = 'json'
     #print(response.text)
     ok = response.status_code == requests.codes.ok
+    
+#Clean up nulls and remove the offending object
+    json_data=json.loads(response.text.replace(': null', ': ""'))
+    del json_data['@context']
 
     p = Producer({'streams.producer.default.stream': '/demo-stream'})
-    p.produce('topic1', response.text)
+    p.produce('topic1', json.dumps(json_data))
     p.flush()
 
     time.sleep(20)
