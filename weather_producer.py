@@ -25,4 +25,4 @@ while ok:
     p.produce('topic1', response.text)
     p.flush()
 
-    time.sleep(10)
+    time.sleep(20)
