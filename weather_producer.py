@@ -2,6 +2,7 @@ from confluent_kafka import Producer
 import json
 import requests
 import time
+import datetime
 
 #make a request to the weather dot gov api for Waxhaw, NC weather station
 url = 'https://api.weather.gov/stations/KEQY/observations/current'
@@ -29,4 +30,5 @@ while ok:
     p.produce('topic1', json.dumps(json_data))
     p.flush()
 
+    print('\n Writing Record at: ' + str(datetime.datetime.now()))
     time.sleep(20)
